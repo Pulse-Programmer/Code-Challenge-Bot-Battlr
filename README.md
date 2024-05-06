@@ -6,7 +6,7 @@
 
 ## Description
 
-This is a mini web React application that displays a list of available bots, with added features such as enlisting, sorting and filtering of bots based on various traits and assets.
+This is a mini web React application that displays a list of available bots, with added features.
 
 ## Installation
 
