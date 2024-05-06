@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SortBar from "./SortBar";
 
 function BotCollection({ items }) {
   const [sortedBots, setSortedBots] = useState(items);
 
+  useEffect(() => {
+    fetch("https://json-db-p2-code-challenge.onrender.com/bots")
+      .then((res) => res.json())
+      .then((initialItems) => setSortedBots(initialItems))
+      .catch((error) => alert(error.message));
+  }, []);
+
   // Callback function to handle sorting
   function handleSort(criteria) {
     let sortedBotsCopy = [...sortedBots];
-    sortedBotsCopy.sort((a, b) => {
-      if (criteria === "health") {
-        return b.health - a.health; // Sort by health (descending)
-      } else if (criteria === "damage") {
-        return b.damage - a.damage; // Sort by damage (descending)
-      } else if (criteria === "armor") {
-        return b.armor - a.armor; // Sort by armor (descending)
-      }
-    });
+    if (criteria !== "None") {
+      sortedBotsCopy.sort((a, b) => {
+        if (criteria === "health") {
+          return b.health - a.health; // (descending)
+        } else if (criteria === "damage") {
+          return b.damage - a.damage;
+        } else if (criteria === "armor") {
+          return b.armor - a.armor;
+        }
+      });
+    }
     setSortedBots(sortedBotsCopy); // Update state with sorted bots
   }
 
@@ -32,33 +41,30 @@ function BotCollection({ items }) {
   return (
     <div>
       <SortBar onSort={handleSort} onFilter={handleFilter} />
-      <div>
+      <div className="row">
         {sortedBots.map((item) => {
           function classIcon() {
             if (item.bot_class === "Support") {
-              return <i>🚁</i>;
+              return <>🚁</>;
             } else if (item.bot_class === "Assault") {
-              return <i>💣</i>;
+              return <>💣</>;
             } else if (item.bot_class === "Defender") {
-              return <i>🛸</i>;
+              return <>🛸</>;
             } else if (item.bot_class === "Medic") {
-              return <i>❤️</i>;
+              return <>❤️</>;
             } else if (item.bot_class === "Witch") {
-              return <i>🖤</i>;
+              return <>🖤</>;
             } else if (item.bot_class === "Captain") {
-              return <i>🔱</i>;
+              return <>🔱</>;
             }
           }
 
           return (
-            <div
-              key={item.id}
-              className="d-inline bg-secondary p-3 m-2 border "
-            >
-              <Link to={`/specs/${item.id}`}>
+            <div key={item.id} className="bg-secondary p-3 m-2 border col-3">
+              <Link to={`/specs/${item.id}`} className="text-decoration-none">
                 <figure className="">
                   <img src={item.avatar_url} alt="bot-avatar" />
-                  <figcaption>
+                  <figcaption className="text-white">
                     <b>
                       {item.name}
                       {classIcon()}
@@ -67,7 +73,7 @@ function BotCollection({ items }) {
                 </figure>
               </Link>
 
-              <p>{item.catchphrase}</p>
+              <p className="text-break">{item.catchphrase}</p>
               <i>🦾</i>
               <em className="m-1">{item.health}</em>
               <i>⚡️</i>

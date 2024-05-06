@@ -4,13 +4,13 @@ function YourBotArmy() {
   const [army, setArmy] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/enlisted")
+    fetch("https://json-db-p2-code-challenge.onrender.com/enlisted")
       .then((res) => res.json())
       .then((data) => setArmy(data));
   }, [army.length]);
 
   function handleDelete(id) {
-    fetch(`http://localhost:3000/enlisted/${id}`, {
+    fetch(`https://json-db-p2-code-challenge.onrender.com/enlisted/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -9,12 +9,12 @@ function BotSpecs() {
   const [enlist, setEnlist] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/bots/${botId}`)
+    fetch(`https://json-db-p2-code-challenge.onrender.com/bots/${botId}`)
       .then((r) => r.json())
       .then((bot) => setBot(bot))
       .catch((error) => alert(error));
 
-    fetch("http://localhost:3000/enlisted")
+    fetch("https://json-db-p2-code-challenge.onrender.com/enlisted")
       .then((r) => r.json())
       .then((enlistedBots) => setEnlist(enlistedBots))
       .catch((error) => alert(error));
@@ -28,7 +28,7 @@ function BotSpecs() {
     // console.log(enlist);
 
     if (duplicate.length === 0) {
-      fetch("http://localhost:3000/enlisted", {
+      fetch("https://json-db-p2-code-challenge.onrender.com/enlisted", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(botRecord),

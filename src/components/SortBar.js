@@ -17,10 +17,15 @@ function SortBar({ onSort, onFilter }) {
   };
 
   return (
-    <div className="sort-bar">
+    <div className="sort-bar bg-dark text-white">
       {/* Sorting options */}
       <label htmlFor="sort-select">Sort By: </label>
-      <select id="sort-select" value={sortBy} onChange={handleSortChange}>
+      <select
+        id="sort-select"
+        value={sortBy}
+        onChange={handleSortChange}
+        className="m-2"
+      >
         <option value="">None</option>
         <option value="health">Health</option>
         <option value="damage">Damage</option>
@@ -29,7 +34,12 @@ function SortBar({ onSort, onFilter }) {
 
       {/* Filtering options */}
       <label htmlFor="filter-select">Filter By Class: </label>
-      <select id="filter-select" value={filterBy} onChange={handleFilterChange}>
+      <select
+        id="filter-select"
+        value={filterBy}
+        onChange={handleFilterChange}
+        className="m-2"
+      >
         <option value="">All</option>
         <option value="Support">Support</option>
         <option value="Medic">Medic</option>

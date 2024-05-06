@@ -7,7 +7,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/bots")
+    fetch("https://json-db-p2-code-challenge.onrender.com/bots")
       .then((res) => res.json())
       .then((data) => setItems(data))
       .catch((error) => alert(error.message));
