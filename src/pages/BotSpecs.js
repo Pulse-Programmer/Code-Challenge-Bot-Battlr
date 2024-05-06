@@ -13,16 +13,22 @@ function BotSpecs() {
       .then((r) => r.json())
       .then((bot) => setBot(bot))
       .catch((error) => alert(error));
+
+    fetch("http://localhost:3000/enlisted")
+      .then((r) => r.json())
+      .then((enlistedBots) => setEnlist(enlistedBots))
+      .catch((error) => alert(error));
   }, [botId]);
 
-  function handleEnlist(bot) {
-    const duplicate = enlist.filter((item) => item.id === bot.id);
+  function handleEnlist(botRecord) {
+    const duplicate = enlist.filter((item) => item.id === botRecord.id);
+    console.log(enlist);
 
     if (duplicate.length === 0) {
       fetch("http://localhost:3000/enlisted", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bot),
+        body: JSON.stringify(botRecord),
       })
         .then((res) => res.json())
         .then((postedBot) =>
