@@ -21,8 +21,11 @@ function BotSpecs() {
   }, [botId]);
 
   function handleEnlist(botRecord) {
-    const duplicate = enlist.filter((item) => item.id === botRecord.id);
-    console.log(enlist);
+    const duplicate = enlist.filter(
+      (item) =>
+        item.id === botRecord.id || item.bot_class === botRecord.bot_class,
+    );
+    // console.log(enlist);
 
     if (duplicate.length === 0) {
       fetch("http://localhost:3000/enlisted", {
