@@ -68,10 +68,10 @@ function BotSpecs() {
             <>🧲</>
             <em className="m-1">{bot.armor}</em>
           </div>
-          <Link to="/">
+          <Link to="/Code-Challenge-Bot-Battlr">
             <button className="d-block w-50 mt-2 rounded">Go Back</button>
           </Link>
-          <Link to="/">
+          <Link to="/Code-Challenge-Bot-Battlr">
             <button
               className="mt-2 w-50 rounded"
               onClick={() => handleEnlist(bot)}

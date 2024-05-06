@@ -61,7 +61,10 @@ function BotCollection({ items }) {
 
           return (
             <div key={item.id} className="bg-secondary p-3 m-2 border col-3">
-              <Link to={`/specs/${item.id}`} className="text-decoration-none">
+              <Link
+                to={`/Code-Challenge-Bot-Battlr/specs/${item.id}`}
+                className="text-decoration-none"
+              >
                 <figure className="">
                   <img src={item.avatar_url} alt="bot-avatar" />
                   <figcaption className="text-white">

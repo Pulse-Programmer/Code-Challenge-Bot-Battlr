@@ -3,11 +3,11 @@ import App from "./App";
 
 const routes = [
   {
-    path: "/",
+    path: "/Code-Challenge-Bot-Battlr",
     element: <App />,
   },
   {
-    path: "/specs/:id",
+    path: "/Code-Challenge-Bot-Battlr/specs/:id",
     element: <BotSpecs />,
   },
 ];
