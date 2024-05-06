@@ -15,8 +15,10 @@ function App() {
 
   return (
     <div className="App container-fluid">
-      <header className="App-header"></header>
-      <YourBotArmy />
+      <header className="App-header">
+        <YourBotArmy />
+      </header>
+
       <BotCollection items={items} />
     </div>
   );
