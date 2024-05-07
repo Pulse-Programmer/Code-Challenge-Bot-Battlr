@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function YourBotArmy() {
+function YourBotArmy({ onHandleDelete }) {
   const [army, setArmy] = useState([]);
 
   useEffect(() => {
@@ -10,6 +10,18 @@ function YourBotArmy() {
   }, [army.length]);
 
   function handleDelete(id) {
+    fetch(`https://json-db-p2-code-challenge.onrender.com/enlisted/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        const updatedItems = army.filter((item) => item.id !== id);
+        setArmy(updatedItems);
+        onHandleDelete(id);
+      });
+  }
+
+  function handleRelease(id) {
     fetch(`https://json-db-p2-code-challenge.onrender.com/enlisted/${id}`, {
       method: "DELETE",
     })
@@ -53,6 +65,12 @@ function YourBotArmy() {
                 </h5>
                 <p style={{ fontSize: "12px" }}>{item.catchphrase}</p>
 
+                <button
+                  className="btn btn-warning bt-sm float-start"
+                  onClick={() => handleRelease(item.id)}
+                >
+                  Release
+                </button>
                 <button
                   className="btn btn-danger btn-sm mb-2"
                   onClick={() => handleDelete(item.id)}

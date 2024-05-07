@@ -10,7 +10,7 @@ function BotCollection({ items }) {
       .then((res) => res.json())
       .then((initialItems) => setSortedBots(initialItems))
       .catch((error) => alert(error.message));
-  }, []);
+  }, [items.length]);
 
   // Callback function to handle sorting
   function handleSort(criteria) {

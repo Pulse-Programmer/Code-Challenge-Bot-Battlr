@@ -13,10 +13,17 @@ function App() {
       .catch((error) => alert(error.message));
   }, []);
 
+  function onHandleDelete(id) {
+    fetch(`https://json-db-p2-code-challenge.onrender.com/bots/${id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then(() => setItems(items.filter((item) => item.id !== id)));
+  }
   return (
     <div className="App container-fluid">
       <header className="App-header">
-        <YourBotArmy />
+        <YourBotArmy onHandleDelete={onHandleDelete} />
       </header>
 
       <BotCollection items={items} />
